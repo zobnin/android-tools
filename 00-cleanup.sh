@@ -25,7 +25,7 @@ case "$1" in
     cd /system/media/audio/notifications/
     mv ${NOTIFICATION}.ogg bak
     rm *.ogg
-    mv bak $NOTIFICATION}.ogg
+    mv bak ${NOTIFICATION}.ogg
     # Alarm sounds (all)
     rm /system/media/audio/alarms/*
     # TTS Languages
