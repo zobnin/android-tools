@@ -36,11 +36,14 @@ case "$1" in
     A=/system/app/
     rm $A/Email.apk
     rm $A/Exchange2.apk
-    rm $A/LockClock.apk
+    #rm $A/LockClock.apk
     rm $A/PicoTts.apk
     rm $A/Term.apk
     #rm $A/ThemeChooser.apk
     #rm $APPS/WAPPushManager.apk
+    rm $A/LiveWallpapers.apk
+    #rm $A/LiveWallpapersPicker.apk
+    rm $A/VisualizationWallpapers.apk
     A=/system/priv-app/
     rm $A/CMUpdater.apk
     #rm $A/ThemeManager.apk
