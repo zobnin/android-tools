@@ -18,14 +18,10 @@ case "$1" in
   restore)
     # Rington sounds
     cd /system/media/audio/ringtones/
-    mv ${RINGTONE}.ogg bak
-    rm *.ogg
-    mv bak ${RINGTONE}.ogg
+    rm [!${RINGTONE}]*.ogg
     # Notify sounds
     cd /system/media/audio/notifications/
-    mv ${NOTIFICATION}.ogg bak
-    rm *.ogg
-    mv bak ${NOTIFICATION}.ogg
+    rm [!${NOTIFICATION}]*.ogg
     # Alarm sounds (all)
     rm /system/media/audio/alarms/*
     # TTS Languages
