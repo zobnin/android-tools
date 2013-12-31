@@ -1,59 +1,52 @@
 #!/bin/sh
 # Evgeny Zobnin (zobnin@gmail.com)
 
+ADB=`which adb`
+
 case $1 in
 "connect")
-    killall adb
-    adb connect $2:5555
+    adb connect $2
     ;;
-"auto-connect")
+"find")
     NETWORK=`ifconfig wlan0 | grep netmask | cut -d ' ' -f 10 | cut -d . -f 1-3`
     ADDR=`nmap --open ${NETWORK}.1-255 -p 5555 | grep "report for" | cut -d ' ' -f 5`
-    test $ADDR || echo "[EE] No ADB devices in the network" && exit
-    killall adb
-    for $addr in $ADDR; do
-	adb connect $addr
-	# TODO: connect to more addresess
-	exit
+    for addr in $ADDR; do
+	$ADB connect $addr
     done
+    $ADB devices
     ;;
-"open")
-    # TODO проверка на подключение 
-    # TODO проверка на http
-    adb shell am start -a android.intent.action.VIEW -d $2
+"view")
+    $ADB shell am start -a android.intent.action.VIEW -d $2
     ;;
 "text")
-    adb shell input text $2
+    $ADB shell input text $2
     ;;
 "screencap")
-    # TODO проверка на подключение 
-    adb shell screencap /sdcard/$2
-    adb pull /sdcard/$2
-    adb shell rm /sdcard/$2
+    $ADB shell screencap /sdcard/$2
+    $ADB pull /sdcard/$2
+    $ADB shell rm /sdcard/$2
     ;;
 "recovery")
-    # TODO проверка на подключение 
-    adb reboot recovery
+    $ADB reboot recovery
     ;;
 "shell")
-    # TODO: передача параметров
-    adb shell
+    $ADB shell
     ;;
 "install")
-    adb install $2
+    $ADB install $2
     ;;
 "power")
-    adb shell input keyevent 26
+    $ADB shell input keyevent 26
     ;;
 "killall")
-    adb shell am kill-all
+    $ADB shell am kill-all
     ;;
 "softreboot")
     # FIXME
     ;;
 "pushall")
     for f in *.$2; do
-	adb push $f $3
+	$ADB push $f $3
     done
     ;;
 "remount")
@@ -61,8 +54,8 @@ case $1 in
     ;;
 "help")
     echo "aa connect IP     - connect to IP"
-    echo "   auto-connect   - connect to near device"
-    echo "   open URL       - open URL in browser"
+    echo "   find           - connect to near device"
+    echo "   view URL       - open URL in browser"
     echo "   text TEXT      - put text in input field"
     echo "   screencap FILE - get screen capture"
     echo "   recovery       - reboot into recovery"
