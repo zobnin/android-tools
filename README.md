@@ -6,5 +6,6 @@
 * **n67-unlock.sh** - unlock Nexus 6/7 bootloader 
 * **pack_rk_img.sh** - pack Rockchip NAND image
 * **unpack_rk_img.sh** - unpack Rockchip NAND image
+* **adbproxy.sh** - use android phone as HTTP-proxy
 
 * **aa** - adb handy wrapper for Linux
