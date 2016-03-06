@@ -7,4 +7,4 @@
 * **pack_rk_img.sh** - pack Rockchip NAND image
 * **unpack_rk_img.sh** - unpack Rockchip NAND image
 
-* aa - adb handy wrapper for Linux
+* **aa** - adb handy wrapper for Linux
